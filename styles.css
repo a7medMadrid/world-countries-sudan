@@ -226,8 +226,14 @@ body {
 .welcome-video {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	position: relative;
 	z-index: 0;
+}
+
+.welcome-video iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
 }
 
 .video-controls {
@@ -960,6 +966,329 @@ body {
 .video-btn:hover {
 	background: var(--primary-gold);
 	color: var(--bg-darker);
+}
+
+/* ===== SPORT PAGE ===== */
+.sport-sections {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.sport-section h3 {
+	font-family: 'Playfair Display', serif;
+	font-size: 2rem;
+	color: var(--primary-gold);
+	margin-bottom: 1.5rem;
+}
+
+.teams-grid,
+.goats-grid,
+.trophies-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 2rem;
+}
+
+.team-card,
+.goat-card,
+.trophy-card {
+	background: var(--bg-card);
+	border: 1px solid var(--border-color);
+	border-radius: 15px;
+	padding: 2rem;
+	text-align: center;
+	transition: var(--transition);
+}
+
+.team-card:hover,
+.goat-card:hover,
+.trophy-card:hover {
+	border-color: var(--primary-gold);
+	transform: translateY(-5px);
+	box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.team-logo {
+	font-size: 4rem;
+	margin-bottom: 1rem;
+}
+
+.team-card h4,
+.goat-card h4,
+.trophy-card h4 {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.5rem;
+	color: var(--primary-gold);
+	margin-bottom: 1rem;
+}
+
+.rankings-table {
+	overflow-x: auto;
+}
+
+.rankings-table table {
+	width: 100%;
+	border-collapse: collapse;
+	background: var(--bg-card);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.rankings-table th,
+.rankings-table td {
+	padding: 1rem;
+	text-align: left;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.rankings-table th {
+	background: rgba(212, 175, 55, 0.1);
+	color: var(--primary-gold);
+	font-weight: 600;
+}
+
+/* ===== GOVERNMENT PAGE ===== */
+.government-sections {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+.government-section h3 {
+	font-family: 'Playfair Display', serif;
+	font-size: 2rem;
+	color: var(--primary-gold);
+	margin-bottom: 1.5rem;
+}
+
+.current-gov-card {
+	background: var(--bg-card);
+	border: 2px solid var(--primary-gold);
+	border-radius: 15px;
+	padding: 2rem;
+}
+
+.current-gov-card h4 {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.8rem;
+	color: var(--primary-gold);
+	margin-bottom: 1rem;
+}
+
+.gov-history-timeline {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.gov-period {
+	background: var(--bg-card);
+	border: 1px solid var(--border-color);
+	border-left: 3px solid var(--primary-gold);
+	border-radius: 10px;
+	padding: 1.5rem;
+	transition: var(--transition);
+}
+
+.gov-period:hover {
+	border-color: var(--primary-gold);
+	transform: translateX(5px);
+}
+
+.gov-period-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.gov-period-years {
+	font-weight: 700;
+	color: var(--primary-gold);
+}
+
+.gov-leader {
+	font-weight: 600;
+	color: var(--text-light);
+}
+
+.wars-list,
+.corruption-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 1.5rem;
+}
+
+.war-card,
+.corruption-card {
+	background: var(--bg-card);
+	border: 1px solid var(--border-color);
+	border-radius: 15px;
+	padding: 1.5rem;
+	transition: var(--transition);
+}
+
+.war-card:hover,
+.corruption-card:hover {
+	border-color: var(--primary-gold);
+	transform: translateY(-5px);
+}
+
+.war-card h4 {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.3rem;
+	color: var(--primary-gold);
+	margin-bottom: 0.75rem;
+}
+
+/* ===== CHARACTERS PAGE ===== */
+.characters-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.character-card {
+	background: var(--bg-card);
+	border: 1px solid var(--border-color);
+	border-radius: 15px;
+	padding: 2rem;
+	transition: var(--transition);
+}
+
+.character-card:hover {
+	border-color: var(--primary-gold);
+	transform: translateY(-5px);
+	box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.character-card h3 {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.8rem;
+	color: var(--primary-gold);
+	margin-bottom: 1rem;
+}
+
+.character-role {
+	color: var(--text-muted);
+	margin-bottom: 1rem;
+	font-style: italic;
+}
+
+.character-achievements {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--border-color);
+	color: var(--text-light);
+}
+
+/* ===== FAMOUS FOR PAGE ===== */
+.famous-for-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 2rem;
+}
+
+.famous-item-card {
+	background: var(--bg-card);
+	border: 1px solid var(--border-color);
+	border-radius: 15px;
+	padding: 2rem;
+	position: relative;
+	transition: var(--transition);
+	text-align: center;
+}
+
+.famous-item-card:hover {
+	border-color: var(--primary-gold);
+	transform: translateY(-5px);
+	box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.famous-item-number {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 40px;
+	height: 40px;
+	background: var(--gradient-1);
+	color: var(--bg-darker);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+.famous-item-card h3 {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.5rem;
+	color: var(--primary-gold);
+	margin-top: 1rem;
+}
+
+/* ===== COUNTRY FLAGS ===== */
+.country-flag {
+	font-size: 1.2em;
+	margin-right: 0.5rem;
+}
+
+.country-name {
+	vertical-align: middle;
+}
+
+.country-card {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+/* ===== TV CHANNELS ===== */
+.tv-iframe-wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	height: 0;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.tv-iframe-wrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* ===== RECIPE MODAL ===== */
+.recipe-content {
+	line-height: 1.8;
+	color: var(--text-light);
+}
+
+.recipe-content p {
+	margin-bottom: 1rem;
+}
+
+.video-modal-wrapper {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.video-modal-wrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 /* ===== RESPONSIVE ===== */
