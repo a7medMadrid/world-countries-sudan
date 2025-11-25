@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>World Countries Explorer | اكتشف دول العالم</title>
+	<link rel="stylesheet" href="styles.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- Login/Signup Page -->
+	<div id="auth-page" class="auth-page">
+		<div class="auth-container">
+			<div class="auth-header">
+				<h1 class="auth-logo">🌍 World Explorer</h1>
+				<p class="auth-subtitle">Discover the world, one country at a time</p>
+			</div>
+
+			<!-- Login Form -->
+			<div id="login-form" class="auth-form active">
+				<h2>Welcome Back</h2>
+				<form id="loginForm">
+					<div class="form-group">
+						<label for="login-email">Email</label>
+						<input type="email" id="login-email" required placeholder="your@email.com" />
+					</div>
+					<div class="form-group">
+						<label for="login-password">Password</label>
+						<input type="password" id="login-password" required placeholder="Enter your password" />
+					</div>
+					<button type="submit" class="auth-btn primary">Sign In</button>
+				</form>
+				<p class="auth-switch">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+			</div>
+
+			<!-- Signup Form -->
+			<div id="signup-form" class="auth-form">
+				<h2>Create Account</h2>
+				<form id="signupForm">
+					<div class="form-group">
+						<label for="signup-email">Email</label>
+						<input type="email" id="signup-email" required placeholder="your@email.com" />
+					</div>
+					<div class="form-group">
+						<label for="signup-password">Password</label>
+						<input type="password" id="signup-password" required placeholder="Create a password" minlength="6" />
+					</div>
+					<div class="form-group">
+						<label for="home-country">Home Country</label>
+						<select id="home-country" required>
+							<option value="">Select your country</option>
+							<option value="Sudan">Sudan</option>
+							<option value="Egypt">Egypt</option>
+							<option value="USA">United States</option>
+							<option value="UK">United Kingdom</option>
+							<option value="France">France</option>
+							<option value="Germany">Germany</option>
+							<option value="Japan">Japan</option>
+							<option value="Brazil">Brazil</option>
+							<option value="India">India</option>
+							<option value="China">China</option>
+							<option value="Saudi Arabia">Saudi Arabia</option>
+							<option value="UAE">United Arab Emirates</option>
+							<option value="Turkey">Turkey</option>
+							<option value="Morocco">Morocco</option>
+							<option value="Tunisia">Tunisia</option>
+							<option value="Algeria">Algeria</option>
+							<option value="Libya">Libya</option>
+							<option value="Iraq">Iraq</option>
+							<option value="Syria">Syria</option>
+							<option value="Lebanon">Lebanon</option>
+							<option value="Jordan">Jordan</option>
+							<option value="Palestine">Palestine</option>
+							<option value="Yemen">Yemen</option>
+							<option value="Oman">Oman</option>
+							<option value="Kuwait">Kuwait</option>
+							<option value="Qatar">Qatar</option>
+							<option value="Bahrain">Bahrain</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="language">Preferred Language</label>
+						<select id="language" required>
+							<option value="en">English</option>
+							<option value="ar">Arabic (العربية)</option>
+							<option value="fr">French (Français)</option>
+							<option value="es">Spanish (Español)</option>
+							<option value="de">German (Deutsch)</option>
+							<option value="it">Italian (Italiano)</option>
+							<option value="pt">Portuguese (Português)</option>
+							<option value="ru">Russian (Русский)</option>
+							<option value="zh">Chinese (中文)</option>
+							<option value="ja">Japanese (日本語)</option>
+							<option value="hi">Hindi (हिन्दी)</option>
+							<option value="tr">Turkish (Türkçe)</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="welcome-style">Welcome Style</label>
+						<select id="welcome-style" required>
+							<option value="text">Text Greeting</option>
+							<option value="image">Image + Text</option>
+							<option value="video">Video + Text</option>
+						</select>
+					</div>
+					<button type="submit" class="auth-btn primary">Create Account</button>
+				</form>
+				<p class="auth-switch">Already have an account? <a href="#" id="show-login">Sign In</a></p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Welcome Video Page -->
+	<div id="welcome-video-page" class="welcome-video-page hidden">
+		<div class="video-container">
+			<div class="video-overlay"></div>
+			<video id="welcome-video" class="welcome-video" autoplay muted>
+				<source src="" type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div class="video-controls">
+				<button id="skip-video" class="skip-btn">Skip Video</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Welcome Greeting Page -->
+	<div id="welcome-greeting-page" class="welcome-greeting-page hidden">
+		<div class="greeting-container">
+			<div class="greeting-content" id="greeting-content">
+				<!-- Content will be dynamically loaded based on user's welcome style -->
+			</div>
+			<button id="continue-to-home" class="continue-btn">Continue to Home</button>
+		</div>
+	</div>
+
+	<!-- Main Dashboard -->
+	<div id="main-dashboard" class="main-dashboard hidden">
+		<!-- Navigation -->
+		<nav class="main-nav">
+			<div class="nav-container">
+				<div class="nav-logo">
+					<span id="current-country-name">Select Country</span>
+					<button id="country-selector-btn" class="country-selector-btn">Change Country</button>
+				</div>
+				<div class="nav-links">
+					<a href="#" data-page="home" class="nav-link active">Home</a>
+					<a href="#" data-page="history" class="nav-link">History</a>
+					<a href="#" data-page="news" class="nav-link">News</a>
+					<a href="#" data-page="food" class="nav-link">Food</a>
+					<a href="#" data-page="sport" class="nav-link">Sport</a>
+					<a href="#" data-page="government" class="nav-link">Government</a>
+					<a href="#" data-page="songs" class="nav-link">Songs</a>
+					<a href="#" data-page="characters" class="nav-link">Famous People</a>
+					<a href="#" data-page="famous-for" class="nav-link">Famous For</a>
+					<button id="logout-btn" class="logout-btn">Logout</button>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Country Selector Modal -->
+		<div id="country-selector-modal" class="modal hidden">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2>Select a Country</h2>
+					<button class="modal-close">&times;</button>
+				</div>
+				<div class="modal-body">
+					<input type="text" id="country-search" placeholder="Search countries..." class="country-search" />
+					<div id="countries-grid" class="countries-grid">
+						<!-- Countries will be loaded dynamically -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Page Container -->
+		<div class="page-container">
+			<!-- Home Page -->
+			<div id="page-home" class="page active">
+				<div class="home-hero">
+					<h1 class="home-title">Welcome to <span id="home-country-display">Your Country</span></h1>
+					<p class="home-subtitle">Explore everything about your country and discover the world</p>
+				</div>
+				<div class="features-grid">
+					<div class="feature-card" data-page="history">
+						<div class="feature-icon">📜</div>
+						<h3>History</h3>
+						<p>Complete history from foundation to present day</p>
+					</div>
+					<div class="feature-card" data-page="news">
+						<div class="feature-icon">📰</div>
+						<h3>News</h3>
+						<p>Latest news and live TV channels</p>
+					</div>
+					<div class="feature-card" data-page="food">
+						<div class="feature-icon">🍽️</div>
+						<h3>Food</h3>
+						<p>Traditional meals and recipes</p>
+					</div>
+					<div class="feature-card" data-page="sport">
+						<div class="feature-icon">⚽</div>
+						<h3>Sport</h3>
+						<p>Teams, rankings, and achievements</p>
+					</div>
+					<div class="feature-card" data-page="government">
+						<div class="feature-icon">🏛️</div>
+						<h3>Government</h3>
+						<p>Political history and current affairs</p>
+					</div>
+					<div class="feature-card" data-page="songs">
+						<div class="feature-icon">🎵</div>
+						<h3>Songs</h3>
+						<p>Famous songs and artists</p>
+					</div>
+					<div class="feature-card" data-page="characters">
+						<div class="feature-icon">⭐</div>
+						<h3>Famous People</h3>
+						<p>National heroes and icons</p>
+					</div>
+					<div class="feature-card" data-page="famous-for">
+						<div class="feature-icon">🌟</div>
+						<h3>Famous For</h3>
+						<p>What makes this country special</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- History Page -->
+			<div id="page-history" class="page">
+				<div class="page-header">
+					<h2>Country History</h2>
+					<p>Complete timeline from foundation to present</p>
+				</div>
+				<div id="history-content" class="page-content">
+					<div class="loading-state">Loading history...</div>
+				</div>
+			</div>
+
+			<!-- News Page -->
+			<div id="page-news" class="page">
+				<div class="page-header">
+					<h2>News</h2>
+					<div class="news-controls">
+						<button id="news-written-btn" class="news-tab active">Written News</button>
+						<button id="news-video-btn" class="news-tab">Live TV</button>
+					</div>
+				</div>
+				<div id="news-content" class="page-content">
+					<div class="news-country-selector">
+						<label>Select Country for News:</label>
+						<select id="news-country-select">
+							<option value="">Select Country</option>
+						</select>
+					</div>
+					<div id="written-news" class="news-section active">
+						<div class="loading-state">Select a country to view news</div>
+					</div>
+					<div id="video-news" class="news-section hidden">
+						<div class="video-news-container">
+							<label>Select Country TV Channel:</label>
+							<select id="tv-country-select">
+								<option value="">Select Country</option>
+							</select>
+							<div id="tv-channels" class="tv-channels-grid"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Food Page -->
+			<div id="page-food" class="page">
+				<div class="page-header">
+					<h2>Traditional Food</h2>
+					<p>Discover authentic recipes and cooking videos</p>
+				</div>
+				<div id="food-content" class="page-content">
+					<div class="loading-state">Loading food information...</div>
+				</div>
+			</div>
+
+			<!-- Sport Page -->
+			<div id="page-sport" class="page">
+				<div class="page-header">
+					<h2>Sports</h2>
+					<p>Teams, rankings, and achievements</p>
+				</div>
+				<div id="sport-content" class="page-content">
+					<div class="loading-state">Loading sports information...</div>
+				</div>
+			</div>
+
+			<!-- Government Page -->
+			<div id="page-government" class="page">
+				<div class="page-header">
+					<h2>Government</h2>
+					<p>Political history and current affairs</p>
+				</div>
+				<div id="government-content" class="page-content">
+					<div class="loading-state">Loading government information...</div>
+				</div>
+			</div>
+
+			<!-- Songs Page -->
+			<div id="page-songs" class="page">
+				<div class="page-header">
+					<h2>Music & Songs</h2>
+					<div class="songs-controls">
+						<button class="genre-btn active" data-genre="all">All</button>
+						<button class="genre-btn" data-genre="rap">Rap</button>
+						<button class="genre-btn" data-genre="jazz">Jazz</button>
+						<button class="genre-btn" data-genre="hip-hop">Hip-Hop</button>
+						<button class="genre-btn" data-genre="pop">Pop</button>
+						<button class="genre-btn" data-genre="traditional">Traditional</button>
+					</div>
+				</div>
+				<div id="songs-content" class="page-content">
+					<div class="artists-section">
+						<h3>Famous Artists</h3>
+						<div id="artists-list" class="artists-grid"></div>
+					</div>
+					<div class="songs-section">
+						<h3>Songs</h3>
+						<div id="songs-list" class="songs-grid"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Famous Characters Page -->
+			<div id="page-characters" class="page">
+				<div class="page-header">
+					<h2>Famous People</h2>
+					<p>National heroes and icons</p>
+				</div>
+				<div id="characters-content" class="page-content">
+					<div class="loading-state">Loading famous people...</div>
+				</div>
+			</div>
+
+			<!-- Famous For Page -->
+			<div id="page-famous-for" class="page">
+				<div class="page-header">
+					<h2>What This Country is Famous For</h2>
+				</div>
+				<div id="famous-for-content" class="page-content">
+					<div class="loading-state">Loading information...</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="data.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
